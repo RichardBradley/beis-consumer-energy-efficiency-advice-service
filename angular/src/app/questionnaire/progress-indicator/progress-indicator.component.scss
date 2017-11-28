@@ -1,0 +1,102 @@
+@import "styles/page";
+@import 'styles/var/colours';
+
+$progress-indicator-height: 40px;
+$progress-indicator-border-width: 2px;
+$sqrt-two: 1.414;
+
+:host {
+  background: white;
+}
+
+.progress-indicator-component {
+  display: flex;
+  height: $progress-indicator-height;
+  padding: 4px 0;
+
+  .progress-indicator {
+    display: flex;
+    flex-grow: 1;
+
+    .questionnaire-section {
+      flex-grow: 1;
+      display: flex;
+      position: relative;
+      align-items: center;
+      box-shadow: 0 2*$progress-indicator-border-width $progress-indicator-border-width $progress-indicator-border-width*-1 grey;
+
+      &:not(:first-child) {
+        padding-left: 20px;
+      }
+
+      &:after {
+        position: absolute;
+        right: -$progress-indicator-height/4;
+        top: 1.5 * $progress-indicator-border-width;
+        content: '';
+        transform: rotate(-45deg);
+        box-shadow: 2*$progress-indicator-border-width 2*$progress-indicator-border-width 2*$progress-indicator-border-width $progress-indicator-border-width*-1 grey;
+        width: calc(#{$progress-indicator-height} / #{$sqrt-two} + 3 * #{$progress-indicator-border-width});
+        height: calc(#{$progress-indicator-height} / #{$sqrt-two} + 3 * #{$progress-indicator-border-width});
+      }
+
+      .horizontal-dashed-line {
+        border-bottom: 1px dashed $dark-medium-grey;
+        flex: 1;
+      }
+
+      .question-type-icon-container, .progress-indicator-step {
+        display: flex;
+        align-items: center;
+        z-index: 1;
+      }
+
+      .question-type-icon-container {
+        flex: 1.5;
+
+        .question-type-icon {
+          padding: 5px 20px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          line-height: 0;
+        }
+      }
+
+      .progress-indicator-step {
+        flex: 1;
+
+        &:last-child {
+          .horizontal-dashed-line {
+            margin-right: -15px;
+          }
+        }
+
+        .step-link {
+          padding: 0;
+          width: 15px;
+          height: 15px;
+          border-radius: 15px;
+          border: 1px solid black;
+          background: none;
+
+          &.active {
+            background-color: black;
+          }
+
+          &:not(:disabled) {
+            cursor: pointer;
+
+            &:hover {
+              background-color: black;
+            }
+          }
+
+          &.not-applicable {
+            background-color: $light-medium-grey;
+          }
+        }
+      }
+    }
+  }
+}

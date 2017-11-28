@@ -1,0 +1,81 @@
+[
+  {
+    "id": 45,
+    "acf": {
+      "questionHeading": "What do you pay a month for your {{fuel_type}}?"
+    },
+    "slug": "heating_cost"
+  },
+  {
+    "id": 44,
+    "acf": {
+      "questionHeading": "How many storeys does your home have?"
+    },
+    "slug": "storeys"
+  },
+  {
+    "id": 43,
+    "acf": {
+      "questionHeading": "So what type of home do you have?"
+    },
+    "slug": "home_type"
+  },
+  {
+    "id": 42,
+    "acf": {
+      "questionHeading": "How old is your home?"
+    },
+    "slug": "home_age"
+  },
+  {
+    "id": 41,
+    "acf": {
+      "questionHeading": "Which type of fuel supplies your heating?"
+    },
+    "slug": "fuel_type"
+  },
+  {
+    "id": 40,
+    "acf": {
+      "questionHeading": "You've selected a flat. What's its position?"
+    },
+    "slug": "flat_position"
+  },
+  {
+    "id": 39,
+    "acf": {
+      "questionHeading": "Do you know your electricity tariff?"
+    },
+    "slug": "electricity_tariff"
+  },
+  {
+    "id": 38,
+    "acf": {
+      "questionHeading": "Do you have a condensing boiler?",
+      "helpText": "Dummy help text for boiler type question"
+    },
+    "slug": "boiler_type"
+  },
+  {
+    "id": 37,
+    "acf": {
+      "questionHeading": "How many bedrooms do you have?"
+    },
+    "slug": "bedrooms"
+  },
+  {
+    "id": 36,
+    "acf": {
+      "questionHeading": "Here's what we know so far..."
+    },
+    "slug": "confirm_epc"
+  },
+  {
+    "id": 35,
+    "acf": {
+      "questionHeading": "What's your postcode?",
+      "helpText": ""
+    },
+    "slug": "postcode_epc"
+  }
+]

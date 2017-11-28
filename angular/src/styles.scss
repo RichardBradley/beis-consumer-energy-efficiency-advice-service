@@ -1,0 +1,24 @@
+// Global styling classes.
+@import "styles/mixins/font";
+@import 'styles/mixins/buttons';
+
+@import "styles/page";
+@import "styles/icons";
+@import 'styles/questionnaire';
+
+@import 'styles/_spinner';
+@import 'styles/_error';
+
+@import "~nouislider/distribute/nouislider.min.css";
+
+html, body {
+  width: 100vw;
+  overflow-y: visible;
+  font-family: $font-family;
+  margin: 0;
+}
+
+html {
+  height: 100vh;
+  overflow-x: hidden;
+}

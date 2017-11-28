@@ -1,0 +1,23 @@
+<div class="recommendation-card">
+    <div class="box description">
+        <div class="content">
+            <span class="icon" [ngClass]="recommendation.iconClassName"></span>
+            <div class="explanation">
+                <div class="heading">{{recommendation.headline}}</div>
+                <div class="summary">{{recommendation.summary}}</div>
+            </div>
+        </div>
+        <a class="read-more" *ngIf="recommendation.readMoreRoute !== undefined" [routerLink]="recommendation.readMoreRoute">
+            <span class="read-more-text">Read more</span>
+            <span class="icon-caret-down"></span>
+        </a>
+    </div>
+    <div class="box investment" *ngIf="recommendation.investmentPounds !== undefined">
+        <div class="box-heading">Investment required</div>
+        <div class="box-content money">£{{recommendation.investmentPounds}}</div>
+    </div>
+    <div class="box savings">
+        <div class="box-heading">Savings per year</div>
+        <div class="box-content money">£{{recommendation.costSavingPoundsPerYear.toFixed(2)}}</div>
+    </div>
+</div>

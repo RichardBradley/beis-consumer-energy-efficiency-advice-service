@@ -1,0 +1,165 @@
+@import "styles/var/colours";
+@import "styles/mixins/font";
+@import "styles/boiler";
+
+.boiler-landing-page {
+
+  .troubleshooting {
+    display: block;
+
+    .tips {
+      margin-top: 32px;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+
+      .carousel {
+        flex: 1 1 auto;
+        padding-right: 24px;
+        border-right: 1px solid $light-medium-grey;
+      }
+
+      .still-not-working {
+        flex: 0 0 250px;
+        padding-left: 48px;
+
+        .link-button {
+          margin-top: 24px;
+        }
+      }
+    }
+  }
+
+  .replacing {
+    background-color: $lighter-grey;
+
+    .page-row-content {
+      display: block;
+
+      .boiler-options {
+        display: flex;
+        align-items: stretch;
+        justify-content: space-between;
+        padding-bottom: 32px;
+        border-bottom: 1px solid $light-medium-grey;
+
+        .body-text {
+          flex: 1 1 auto;
+          display: flex;
+          align-items: center;
+        }
+
+        .link-button {
+          flex: 0 0 250px;
+          margin-left: 64px;
+        }
+      }
+
+      .not-sure-if {
+        padding-top: 32px;
+
+        .heading {
+          font-size: 24px;
+        }
+
+        .body {
+          display: flex;
+          align-items: stretch;
+          justify-content: space-between;
+
+          .make-and-model, .postcode-epc {
+            flex: 1 1 auto;
+            flex-basis: calc(50% - 96px);
+          }
+
+          .make-and-model {
+            padding-right: 96px;
+            border-right: 1px solid $light-medium-grey;
+          }
+
+          .postcode-epc {
+            padding-left: 96px;
+          }
+        }
+      }
+    }
+  }
+
+  .grants {
+    display: block;
+
+    .body {
+      display: flex;
+      align-items: stretch;
+      justify-content: space-between;
+
+      .body-text {
+        flex: 1 1 auto;
+        display: flex;
+        align-items: center;
+        margin-right: 96px;
+      }
+
+      .links {
+        flex: 0 0 524px;
+        display: flex;
+        align-items: stretch;
+        justify-content: space-between;
+
+        > .link-button {
+          flex: 0 0 250px;
+
+          &:first-child {
+            margin-right: 24px;
+          }
+        }
+      }
+    }
+  }
+
+  .find-installer {
+    background-color: $lighter-grey;
+
+    .page-row-content {
+      display: block;
+
+      .installers {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+
+        .installer {
+          flex: 1 0 1px;
+          &:not(:last-child) {
+            margin-right: 24px;
+          }
+
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: flex-end;
+
+          .installer-section {
+            @include body-uppercase;
+          }
+
+          .installer-link {
+            width: 100%;
+            height: 120px;
+            margin-top: 12px;
+            padding: 24px;
+            box-sizing: border-box;
+
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-start;
+
+            @include card-heading;
+            background-color: white;
+          }
+        }
+      }
+    }
+  }
+}

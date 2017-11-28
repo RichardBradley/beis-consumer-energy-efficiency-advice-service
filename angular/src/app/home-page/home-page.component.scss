@@ -1,0 +1,152 @@
+@import "styles/page";
+@import 'styles/mixins/buttons';
+@import 'styles/mixins/font';
+@import "styles/var/colours";
+
+.home-page {
+  background-color: $light-grey;
+  flex-direction: column;
+
+  .heading {
+    .page-row-content {
+      .heading-text {
+        @include page-heading;
+        max-width: 0.5 * $content-max-width;
+        padding: 60px 0;
+      }
+    }
+  }
+
+  .landing-page-links {
+    .page-row-content {
+      padding-bottom: 30px;
+
+      > :not(:last-child) {
+        margin-right: 32px;
+      }
+
+      .landing-page-link {
+        flex: 1;
+        font-size: 22px;
+        font-weight: bold;
+        color: black;
+        background-color: white;
+        display: flex;
+        align-items: center;
+        text-align: left;
+        padding: 48px 32px;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        text-decoration: none;
+
+        &:focus, &:hover {
+          box-shadow: 3px 3px 6px black;
+        }
+      }
+    }
+  }
+
+  .quick-links {
+    display: flex;
+    align-items: stretch;
+
+    > :nth-child(odd) {
+      background-color: $light-medium-grey;
+      color: white;
+    }
+
+    > :nth-child(even) {
+      background-color: $lighter-grey;
+      color: black;
+    }
+
+    .quick-link {
+      outline: none;
+      border: none;
+      cursor: pointer;
+
+      min-height: 280px;
+      box-sizing: border-box;
+      padding: 0 32px 24px 32px;
+      flex: 1 0 1px;
+
+      display: flex;
+      align-items: stretch;
+
+      &:focus, &:hover {
+        box-shadow: 3px 3px 6px black;
+      }
+
+      .text {
+        flex: 1 1 60%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        .content {
+          .heading {
+            @include page-subheading;
+            margin: 64px 0 16px 0;
+          }
+
+          .subheading {
+            @include body-uppercase;
+            margin-bottom: 32px;
+          }
+
+          .arrow-button {
+            @include arrow-button(200px, 40px);
+          }
+        }
+
+        &:only-child {
+          .content .subheading {
+            width: 70%;
+          }
+        }
+      }
+
+      .quick-link-icon {
+        flex: 1 1 40%;
+        display: flex;
+        justify-content: center;
+
+        &.center {
+          align-items: center;
+        }
+      }
+
+      .arrow-button {
+        @include arrow-button(200px, 40px);
+        @include body-uppercase;
+        text-align: center;
+        font-weight: normal;
+        margin-top: 16px;
+      }
+    }
+  }
+
+  .latest-news {
+    margin-top: 64px;
+    flex-direction: column;
+
+    .subheading {
+      @include page-subheading;
+    }
+
+    .latest-news-cards {
+      display: flex;
+      padding: 20px 0;
+      align-items: stretch;
+
+      & > * {
+        flex: 1;
+      }
+
+      > :not(:last-child) {
+        margin-right: 15px;
+      }
+    }
+  }
+}

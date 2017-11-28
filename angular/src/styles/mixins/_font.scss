@@ -1,0 +1,42 @@
+$font-family: "nta", Arial, sans-serif;
+
+@mixin page-heading {
+  font-size: 56px;
+  font-weight: bold;
+}
+
+@mixin page-subheading {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+@mixin focus-text {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+@mixin headline-figure {
+  font-size: 56px;
+  font-weight: bold;
+}
+
+@mixin title-text {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+@mixin card-heading {
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 1.25;
+}
+
+@mixin body-uppercase {
+  font-size: 13px;
+  text-transform: uppercase;
+}
+
+@mixin navbar-item {
+  font-size: 14px;
+  font-weight: bold;
+}

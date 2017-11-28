@@ -1,0 +1,25 @@
+<div class="question-component postcode-epc-question">
+    <form class="questionnaire-form" (submit)="handlePostcodeEntered()">
+        <div class="form-element">
+            <input class="text-input" id="postcode-input" name="postcode-input" type="text" spellcheck="false"
+                   aria-labelledby="question-heading" [(ngModel)]="postcodeInput">
+            <button title="Submit" aria-label="Submit" id="submit-postcode" type="submit" class="icon-search">
+            </button>
+        </div>
+    </form>
+    <div class="error" *ngIf="validationError">
+        <div class="error-message">{{validationError}}</div>
+    </div>
+    <div class="loading-spinner" *ngIf="shouldDisplayLoadingSpinner"></div>
+    <div *ngIf="allEpcsForPostcode && allEpcsForPostcode.length > 0">
+        <div class="select-address">Please select your address:</div>
+        <div class="list-select">
+            <button class="list-select-option" [class.selected]="isSelected(epc)"
+                    *ngFor="let epc of allEpcsForPostcode" (click)="continueWithEpc(epc)">{{epc.getDisplayAddress()}}
+            </button>
+            <button class="list-select-option address-not-listed" [class.selected]="isNoEpcSelected"
+                    (click)="continueWithoutEpc()">My address is not listed
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,18 @@
+.main-content {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  // IE11 requires a height on a flex-container to facilitate flex-grow
+  height: 0;
+
+  .page-component {
+    flex-grow: 1;
+    flex-shrink: 0;
+    flex-direction: column;
+    display: flex;
+  }
+
+  & > :last-child {
+    margin-top: auto;
+  }
+}

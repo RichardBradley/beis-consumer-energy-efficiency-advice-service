@@ -1,0 +1,115 @@
+@import "styles/mixins/epc-rating";
+
+$section-break-margin: 40px;
+$epc-rating-width: 40px;
+
+.confirm-epc-question {
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  min-width: 60vw;
+
+  .horizontal-line {
+    border-top: 1px solid black;
+    width: 100%;
+  }
+
+  .epc-rating-container {
+    display: flex;
+    flex-direction: row;
+    margin: $section-break-margin 0;
+
+    .epc-rating-column {
+      flex: 1 1 50%;
+      margin-right: 40px;
+    }
+
+    .epc-rating-row {
+      display: flex;
+      align-items: center;
+
+      .epc-rating {
+        @include epc-rating($epc-rating-width);
+        margin-left: 40px;
+      }
+    }
+  }
+
+  .confirm-epc-details-section {
+    margin: $section-break-margin 0;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+
+    .epc-details-container {
+      display: flex;
+      flex-direction: column;
+      flex-basis: 50%;
+
+      .epc-details-header {
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      .epc-details-list {
+        margin: 0;
+
+        .epc-detail {
+          margin: 10px 0;
+        }
+      }
+    }
+
+    .confirm-epc-details {
+      display: flex;
+      flex-direction: column;
+      font-weight: bold;
+      flex-basis: 50%;
+      justify-content: space-between;
+
+      .confirm-epc-details-row {
+        display: flex;
+
+        .confirm-epc-details-question {
+          margin-right: 20px;
+        }
+
+        .confirm-epc-details-button {
+          background: none;
+          border: 1px solid black;
+          height: 30px;
+          width: 80px;
+          border-radius: 15px;
+          margin: 0 10px;
+          cursor: pointer;
+
+          &:hover {
+            background-color: black;
+            color: white;
+          }
+        }
+      }
+    }
+  }
+
+  .need-more-details-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .need-more-details-container, .confirm-epc-details-section {
+    .need-more-details-button {
+      margin-top: $section-break-margin;
+      background-color: black;
+      color: white;
+      cursor: pointer;
+      padding: 10px 40px 10px 20px;
+      border: none;
+
+      &:hover {
+        box-shadow: 0 0 2px 2px grey;
+      }
+    }
+  }
+}

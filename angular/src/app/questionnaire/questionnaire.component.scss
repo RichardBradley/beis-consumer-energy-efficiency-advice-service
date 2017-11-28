@@ -1,0 +1,73 @@
+@import 'styles/mixins/buttons';
+@import "styles/page";
+
+:host {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.questions-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  flex-grow: 1;
+  background-color: $lighter-grey;
+
+  .question-type-icon {
+    margin-top: 15vh;
+    margin-bottom: 20px;
+  }
+
+  .question-heading-container {
+    width: 100%;
+    max-width: 1280px;
+  }
+
+  .question-heading-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 32px;
+
+    > button {
+      flex: 0 0 auto;
+    }
+
+    .question-heading {
+      font-size: 36px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .left-arrow, .right-arrow {
+      @include round-button(32px);
+      font-size: 16px;
+      margin: 0 16px;
+
+      &.hidden {
+        visibility: hidden;
+      }
+    }
+  }
+
+  .help-text {
+    width: 60vw;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .question {
+    width: 100vw;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  app-question-reason {
+    margin-top: auto;
+    margin-bottom: 40px;
+  }
+}

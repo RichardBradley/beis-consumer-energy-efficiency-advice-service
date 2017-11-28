@@ -1,0 +1,124 @@
+@import "styles/mixins/font";
+@import "styles/var/colours";
+@import "styles/page";
+
+$investment-box-width: 180px;
+$savings-box-width: 180px;
+$remaining-boxes-width: $content-max-width - $investment-box-width - $savings-box-width;
+
+:host {
+  display: block;
+}
+
+.recommendation-card {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+
+  margin: 16px 0;
+
+  .box {
+    box-sizing: border-box;
+
+    &.description {
+      flex: 1 1 auto;
+      width: $remaining-boxes-width;
+      background-color: $lighter-grey;
+      border-left: 10px solid $lighter-medium-grey;
+    }
+
+    &.investment {
+      flex: 0 0 auto;
+      width: $investment-box-width;
+      background-color: $light-grey;
+      font-weight: 800;
+    }
+
+    &.savings {
+      flex: 0 0 auto;
+      width: $savings-box-width;
+      background-color: $dark-medium-grey;
+      font-weight: 800;
+      color: white;
+    }
+
+    &:not(.description) {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      padding: 32px 48px;
+
+      .box-heading {
+        @include body-uppercase;
+        font-weight: normal;
+        text-align: center;
+        height: 48px;
+      }
+
+      .box-content {
+        @include focus-text;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+
+  .box.description {
+
+    box-sizing: border-box;
+    padding: 16px;
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+
+    .content {
+      flex: 1 1 auto;
+      display: flex;
+      align-items: center;
+
+      .icon {
+        margin-right: 16px;
+      }
+
+      .explanation {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        width: 100%;
+
+        .heading {
+          @include card-heading;
+          margin-bottom: 16px;
+          width: 100%;
+        }
+
+        .summary {
+          font-size: 14px;
+          width: 100%;
+        }
+      }
+    }
+
+    .read-more {
+      display: flex;
+      flex: 0 0 auto;
+      align-items: flex-end;
+
+      text-decoration: none;
+      cursor: pointer;
+      color: black;
+
+      .read-more-text {
+        @include body-uppercase;
+      }
+
+      .icon-caret-down {
+        position: relative;
+        top: 6px;
+        margin-left: 8px;
+      }
+    }
+  }
+}

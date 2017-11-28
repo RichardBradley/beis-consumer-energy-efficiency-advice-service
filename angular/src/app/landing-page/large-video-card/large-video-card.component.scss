@@ -1,0 +1,44 @@
+@import "styles/var/colours";
+@import "styles/mixins/font";
+
+:host {
+  display: block;
+}
+
+.large-video-card {
+  display: flex;
+  min-height: 300px;
+
+  > * {
+    padding: 32px;
+    box-sizing: border-box;
+    flex: 1 1 50%;
+    min-height: inherit;
+  }
+
+  .video-icon-container {
+    background-color: $dark-grey;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .text-container {
+    background-color: $light-grey;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+
+
+    .video-text {
+      @include card-heading;
+    }
+
+    .title {
+      @include title-text;
+      padding: 32px 0;
+      max-width: 80%;
+    }
+  }
+}

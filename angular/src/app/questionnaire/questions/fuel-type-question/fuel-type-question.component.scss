@@ -1,0 +1,25 @@
+.fuel-type-options {
+  .icon-container {
+    height: 150px;
+
+    .electricity::after {
+      content: url('/assets/images/fuel-types/electricty.svg');
+    }
+
+    .mains-gas::after {
+      content: url('/assets/images/fuel-types/mains-gas.svg');
+    }
+
+    .lpg-gas::after {
+      content: url('/assets/images/fuel-types/lpg-gas.svg');
+    }
+
+    .heating-oil::after {
+      content: url('/assets/images/fuel-types/heating-oil.svg');
+    }
+
+    .solid-fuel::after {
+      content: url('/assets/images/fuel-types/solid-fuel.svg');
+    }
+  }
+}

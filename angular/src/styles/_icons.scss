@@ -1,0 +1,153 @@
+.icon-tree::before {
+  content: url('/assets/images/icons/tree.svg');
+}
+
+.icon-home-storeys::before {
+  content: url('/assets/images/icons/home-storeys.svg');
+}
+
+.icon-bed::before {
+  content: url('/assets/images/icons/bedrooms.svg');
+}
+
+.icon-house::before {
+  content: url('assets/images/question-types/house.svg');
+}
+
+.icon-person::before {
+  content: url('assets/images/question-types/person.svg');
+}
+
+.icon-person-large::before {
+  content: url('assets/images/question-types/person-large.svg');
+}
+
+.icon-thermostat::before {
+  content: url('assets/images/question-types/thermostat.svg');
+}
+
+.icon-person-showering::before {
+  content: url('assets/images/question-types/behaviour.svg');
+}
+
+.icon-behaviour::before {
+  content: url('assets/images/topics/behaviour.svg');
+}
+
+.icon-doors::before {
+  content: url('assets/images/topics/doors.svg');
+}
+
+.icon-flooring::before {
+  content: url('assets/images/topics/flooring.svg');
+}
+
+.icon-heating::before {
+  content: url('assets/images/topics/heating.svg');
+}
+
+.icon-home::before {
+  content: url('assets/images/topics/home.svg');
+}
+
+.icon-occupancy::before {
+  content: url('assets/images/topics/occupancy.svg');
+}
+
+.icon-roofing::before {
+  content: url('assets/images/topics/roofing.svg');
+}
+
+.icon-thermometer::before {
+  content: url('assets/images/topics/thermometer.svg');
+}
+
+.icon-walls::before {
+  content: url('assets/images/topics/walls.svg');
+}
+
+.icon-windows::before {
+  content: url('assets/images/topics/windows.svg');
+}
+
+.icon-circle-tick::before {
+  content: url('assets/images/topics/circle-tick.svg');
+}
+
+.icon-search::before {
+  content: url('assets/images/controls/search.svg');
+}
+
+.icon-search-white::before {
+  content: url('assets/images/controls/search-white.svg');
+}
+
+.icon-phone::before {
+  content: url('assets/images/controls/phone.svg');
+}
+
+.icon-house-layers::before {
+  content: url('assets/images/icons/house-layers.svg');
+}
+
+.icon-timer::before {
+  content: url('assets/images/icons/timer.svg');
+}
+
+.icon-boiler {
+  width: 103px;
+  height: 239px;
+  &::before {
+    content: url('assets/images/icons/boiler.svg');
+  }
+}
+
+.icon-video-play::before {
+  content: url('assets/images/page-type/video-play.svg');
+}
+
+.icon-infographic::before {
+  content: url('assets/images/page-type/infographic.svg');
+}
+
+.icon-checklist::before {
+  content: url('assets/images/page-type/checklist.svg');
+}
+
+.icon-grant::before {
+  content: url('assets/images/page-type/grant.svg');
+}
+
+.icon-caret-down::before {
+  content: url('assets/images/controls/caret-down.svg');
+}
+
+.icon-chevron-left {
+  &::before {
+    content: url('assets/images/controls/chevron-left.svg');
+  }
+  &[disabled]::before {
+    content: url('assets/images/controls/chevron-left-grey.svg');
+  }
+}
+
+.icon-chevron-right {
+  &::before {
+    content: url('assets/images/controls/chevron-right.svg');
+  }
+  &[disabled]::before {
+    content: url('assets/images/controls/chevron-right-grey.svg');
+  }
+}
+
+.icon-camera::before {
+  content: url('assets/images/icons/camera.svg');
+}
+
+.icon-tick::before {
+  content: url('assets/images/icons/tick.svg');
+}
+
+.icon-cross::before {
+  content: url('assets/images/icons/cross.svg');
+}

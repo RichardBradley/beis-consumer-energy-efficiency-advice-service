@@ -1,0 +1,25 @@
+@import "styles/var/_colours";
+@import "styles/mixins/_font";
+
+.navigation-bar {
+  background-color: $dark-grey;
+  height: 36px;
+
+  .page-row-content {
+
+    .menu-item {
+      padding: 10px 15px;
+      cursor: pointer;
+      border: none;
+      background: none;
+      outline: none;
+      color: white;
+      text-decoration: none;
+
+      &:focus {
+        @include navbar-item;
+        text-decoration: underline;
+      }
+    }
+  }
+}

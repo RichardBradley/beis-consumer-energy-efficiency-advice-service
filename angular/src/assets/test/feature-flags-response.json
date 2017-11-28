@@ -1,0 +1,9 @@
+[
+  {
+    "id": 19,
+    "acf": {
+      "enabled": true
+    },
+    "slug": "fetch_epc_data"
+  }
+]

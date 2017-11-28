@@ -1,0 +1,115 @@
+@import '../var/colours';
+@import './font';
+
+$border-width: 1px;
+
+@mixin default-button($width, $height) {
+  cursor: pointer;
+  border: $border-width solid transparent;
+  background-color: black;
+  color: white;
+  width: $width;
+  height: $height;
+  font-weight: bold;
+
+  &[disabled], &.inactive {
+    background-color: $light-medium-grey;
+    cursor: default;
+  }
+
+  &:not([disabled]) {
+    &:hover, &:focus {
+      background-color: white;
+      border-color: black;
+      color: black;
+    }
+  }
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin round-button($size) {
+  @include default-button($size, $size);
+  border-radius: 50%;
+}
+
+@mixin capsule-button($width, $height) {
+  cursor: pointer;
+  width: $width;
+  height: $height;
+  border-radius: 10%/50%;
+  border: $border-width solid black;
+  font-weight: bold;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin arrow-button($width, $height) {
+  @include default-button($width, $height);
+  position: relative;
+  box-sizing: content-box;
+  padding: 0;
+  overflow: visible;
+
+  &:after {
+    right: -$height - 3 * $border-width;
+    top: -$border-width;
+    content: " ";
+    position: absolute;
+    border-style: solid;
+    border-color: transparent;
+    border-left-color: black;
+    border-width: 0.5 * $height + $border-width;
+  }
+
+  &:not([disabled]) {
+    &:hover, &:focus {
+      border-right-color: white;
+
+      &:before {
+        right: -$height -$border-width;
+        top: 0;
+        content: " ";
+        position: absolute;
+        border-style: solid;
+        border-color: transparent;
+        border-left-color: white;
+        border-width: 0.5 * $height;
+        z-index: 1;
+      }
+    }
+  }
+}
+
+// Hide the up and down spin buttons in <input> with type 'number'
+@mixin with-no-spin-buttons {
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+  }
+
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+}
+
+@mixin big-rounded-button() {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 240px;
+  height: 120px;
+  border-radius: 32px;
+  border: 1px solid black;
+
+  padding: 20px 50px;
+  box-sizing: border-box;
+
+  font-size: 24px;
+  font-weight: bold;
+}
