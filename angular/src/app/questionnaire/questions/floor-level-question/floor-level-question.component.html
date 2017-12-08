@@ -1,0 +1,11 @@
+<div class="question-component">
+    <div class="multiple-choice-options floor-level-options">
+        <button class="multiple-choice-option floor-level-option"
+                *ngFor="let option of floorLevelOptions"
+                [class.selected]="response === option.value"
+                [ngClass]="option.className"
+                (click)="response = option.value; complete.emit()">
+            {{option.name}}
+        </button>
+    </div>
+</div>

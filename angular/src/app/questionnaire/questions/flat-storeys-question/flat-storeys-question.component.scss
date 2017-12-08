@@ -1,0 +1,27 @@
+@import "styles/var/colors";
+
+.flat-storeys-question {
+  display: flex;
+  align-items: center;
+
+  .storeys-input {
+    display: flex;
+    flex-direction: column;
+
+    &:not(:first-child) {
+      margin-left: 30px;
+      padding-left: 30px;
+      border-left: 1px solid $separator-grey;
+    }
+
+    .name {
+      font-size: 16px;
+      line-height: 20px;
+
+      display: flex;
+      justify-content: center;
+
+      margin-bottom: 17px;
+    }
+  }
+}

@@ -2,6 +2,8 @@ import {NgModule} from "@angular/core";
 import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {CommonModule} from "@angular/common";
+import {InlineSVGModule} from "ng-inline-svg";
+import {CookieService} from "ng2-cookies";
 
 import {TimesPipe} from "./times/times.pipe";
 import {QuestionContentService} from "./question-content/question-content.service";
@@ -22,11 +24,19 @@ import {RecommendationCardComponent} from "./recommendation-card/recommendation-
 import {EpcApiService} from "./postcode-epc-service/epc-api-service/epc-api.service";
 import {GoogleAnalyticsService} from "./analytics/google-analytics.service";
 import {EnergySavingMeasureContentService} from "./energy-saving-measure-content-service/energy-saving-measure-content.service";
-import {QuestionReasonComponent} from './question-reason/question-reason.component';
+import {QuestionReasonComponent} from "./question-reason/question-reason.component";
 import {AssetsService} from "./assets-service/assets.service";
+import {PostcodeLookupComponent} from "./postcode-lookup/postcode-lookup.component";
+import {LargeVideoCardComponent} from "./large-video-card/large-video-card.component";
+import {SafePipe} from './safe/safe.pipe';
+import {GrantCardComponent} from "./grant-card/grant-card.component";
+import {RecommendationsService} from "./recommendations-service/recommendations.service";
+import {StickyRowWrapperComponent} from "./sticky-row-wrapper/sticky-row-wrapper.component";
+import {DataCardComponent} from "./data-card/data-card.component";
 
 @NgModule({
     declarations: [
+        PostcodeLookupComponent,
         TimesPipe,
         NavigationBarComponent,
         LatestNewsCardComponent,
@@ -35,8 +45,14 @@ import {AssetsService} from "./assets-service/assets.service";
         NeedHelpComponent,
         RecommendationCardComponent,
         QuestionReasonComponent,
+        LargeVideoCardComponent,
+        SafePipe,
+        GrantCardComponent,
+        StickyRowWrapperComponent,
+        DataCardComponent
     ],
     exports: [
+        PostcodeLookupComponent,
         TimesPipe,
         NavigationBarComponent,
         LatestNewsCardComponent,
@@ -44,13 +60,19 @@ import {AssetsService} from "./assets-service/assets.service";
         SpinnerAndErrorContainerComponent,
         NeedHelpComponent,
         RecommendationCardComponent,
-        QuestionReasonComponent
+        QuestionReasonComponent,
+        LargeVideoCardComponent,
+        SafePipe,
+        GrantCardComponent,
+        StickyRowWrapperComponent,
+        DataCardComponent
     ],
     imports: [
         HttpClientModule,
         RoutingModule,
         CommonModule,
-        FormsModule
+        FormsModule,
+        InlineSVGModule,
     ],
 })
 export class SharedModule {
@@ -70,6 +92,8 @@ export class SharedModule {
                 EnergySavingMeasureContentService,
                 GoogleAnalyticsService,
                 AssetsService,
+                RecommendationsService,
+                CookieService
             ]
         };
     }

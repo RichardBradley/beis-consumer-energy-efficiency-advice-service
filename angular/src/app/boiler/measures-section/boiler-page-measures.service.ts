@@ -44,7 +44,7 @@ export class BoilerPageMeasuresService {
                 undefined,
                 'Drop the thermostat by 1 degree',
                 undefined,
-                'icon-thermometer',
+                'icons/thermostat.svg',
             ),
         },
     ];
@@ -69,7 +69,7 @@ export class BoilerPageMeasuresService {
         return this.measuresService.fetchMeasureDetails().map(measures =>
             BoilerPageMeasuresService.partialMeasuresToShowOnBoilerPages.map(measureAndCode => {
                 if (measureAndCode.code !== undefined) {
-                    const measureResponse = measures.find(measure => measure.acf.rdsap_measure_code === measureAndCode.code);
+                    const measureResponse = measures.find(measure => measure.acf.measure_code === measureAndCode.code);
                     return BoilerPageMeasuresService.combinedMeasure(measureAndCode.measure, measureResponse);
                 } else {
                     return measureAndCode.measure;

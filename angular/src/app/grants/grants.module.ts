@@ -9,7 +9,6 @@ import {GrantsLandingPageComponent} from "./landing-page/grants-landing-page.com
 import {RoutingModule} from "../app-routing.module";
 import {GrantEligibilityService} from "./grant-eligibility-service/grant-eligibility.service";
 import {NationalGrantsContentService} from "./national-grants-content-service/national-grants-content.service";
-import {GrantCardComponent} from "./grant-card/grant-card.component";
 import {IncomeThresholdService} from "./national-grant-calculator/grants/eco-hhcro-help-to-heat/income-threshold-service/income-threshold.service";
 import {ColdWeatherPayments} from "./national-grant-calculator/grants/cold-weather-payments/cold-weather-payments";
 import {EcoHhcroFlex} from "./national-grant-calculator/grants/eco-hhcro-flex/eco-hccro-flex";
@@ -20,17 +19,17 @@ import {EcoHhcroHelpToHeat} from "./national-grant-calculator/grants/eco-hhcro-h
 import {WinterFuelPayments} from "./national-grant-calculator/grants/winter-fuel-payments/winter-fuel-payments";
 import {NationalGrantCalculator} from "./national-grant-calculator/national-grant-calculator";
 import {NationalGrantCalculatorProvider} from "./national-grant-calculator/provider/national-grant-calculator.provider";
+import {RenewableHeatIncentive} from "./national-grant-calculator/grants/renewable-heat-incentive/renewable-heat-incentive";
+import {FeedInTariff} from "./national-grant-calculator/grants/feed-in-tariff/feed-in-tariff";
 
 @NgModule({
     declarations: [
         GrantsQuestionnaireComponent,
-        GrantsLandingPageComponent,
-        GrantCardComponent
+        GrantsLandingPageComponent
     ],
     exports: [
         GrantsQuestionnaireComponent,
-        GrantsLandingPageComponent,
-        GrantCardComponent
+        GrantsLandingPageComponent
     ],
     imports: [
         SharedModule,
@@ -56,6 +55,8 @@ export class GrantsModule {
                 {provide: NationalGrantCalculator, useClass: EcoHhcroSocialEfg, multi: true},
                 {provide: NationalGrantCalculator, useClass: WarmHomeDiscount, multi: true},
                 {provide: NationalGrantCalculator, useClass: WinterFuelPayments, multi: true},
+                {provide: NationalGrantCalculator, useClass: RenewableHeatIncentive, multi: true},
+                {provide: NationalGrantCalculator, useClass: FeedInTariff, multi: true}
             ]
         };
     }

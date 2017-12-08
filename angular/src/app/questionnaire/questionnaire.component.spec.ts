@@ -21,6 +21,9 @@ import {QuestionHeadingProcessor} from "./question-heading-processor.service";
 import {GoogleAnalyticsService} from "../shared/analytics/google-analytics.service";
 import {QuestionReasonComponent} from "../shared/question-reason/question-reason.component";
 
+import {InlineSVGModule} from "ng-inline-svg";
+import {HttpClientTestingModule} from "@angular/common/http/testing";
+
 describe('QuestionnaireComponent', () => {
     let component: QuestionnaireComponent;
     let fixture: ComponentFixture<QuestionnaireComponent>;
@@ -60,8 +63,8 @@ describe('QuestionnaireComponent', () => {
             super(
                 new ResponseData(),
                 [
-                    new TestQuestion(TestQuestionComponent, questionId, QuestionType.User),
-                    new TestQuestion(TestQuestionComponent, anotherQuestionId, QuestionType.User)
+                    new TestQuestion(TestQuestionComponent, questionId, QuestionType.House),
+                    new TestQuestion(TestQuestionComponent, anotherQuestionId, QuestionType.House)
                 ]
             );
         }
@@ -106,7 +109,7 @@ describe('QuestionnaireComponent', () => {
         responseDataStub = new ResponseData();
         TestBed.configureTestingModule({
             declarations: [QuestionnaireComponent, ProgressIndicatorComponent, SpinnerAndErrorContainerComponent, NeedHelpComponent, QuestionReasonComponent],
-            imports: [RouterTestingModule.withRoutes([])],
+            imports: [RouterTestingModule.withRoutes([]), InlineSVGModule, HttpClientTestingModule],
             providers: [
                 ComponentFactoryResolver,
                 ChangeDetectorRef,

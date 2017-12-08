@@ -1,0 +1,19 @@
+.flat-exposed-wall-options {
+  display: flex;
+  flex-wrap: wrap;
+
+  .flat-exposed-wall-option {
+    flex: 0 0 auto;
+    width: calc((100% - 20px - 1px) / 2);
+    text-transform: capitalize;
+
+    &:nth-child(odd) {
+      margin-right: 20px;
+    }
+
+    &:nth-last-child(n + 2) {
+      margin-bottom: 20px;
+    }
+  }
+
+}

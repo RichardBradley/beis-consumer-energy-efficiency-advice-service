@@ -1,6 +1,6 @@
 @import "styles/mixins/font";
 @import "styles/mixins/spinner";
-@import "styles/var/colours";
+@import "styles/var/colors";
 
 $grant-cards-per-row: 4;
 $grant-card-margin: 24px;
@@ -57,7 +57,7 @@ $grant-card-margin: 24px;
           }
 
           .grant-subheading {
-            @include card-heading;
+            @include card-heading-small;
           }
 
           .link-button {
@@ -82,6 +82,7 @@ $grant-card-margin: 24px;
             align-items: stretch;
             flex-direction: column;
             justify-content: space-between;
+            min-width: 1px;
 
             &:not(:first-child) {
               margin-left: 10px;

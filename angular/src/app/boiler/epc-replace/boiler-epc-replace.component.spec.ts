@@ -3,6 +3,7 @@ import {By} from "@angular/platform-browser";
 import {FormsModule} from "@angular/forms";
 import {RouterTestingModule} from "@angular/router/testing";
 import {Observable} from "rxjs/Observable";
+import {InlineSVGModule} from "ng-inline-svg";
 
 import {BoilerEpcReplaceComponent} from "./boiler-epc-replace.component";
 import {BoilerMakeModelLookupComponent} from "../make-model-lookup/boiler-make-model-lookup.component";
@@ -12,13 +13,15 @@ import {SpinnerAndErrorContainerComponent} from "../../shared/spinner-and-error-
 import {BoilerTypesService} from "../boiler-types-service/boiler-types.service";
 import {EpcRecommendation} from "../../shared/epc-api-service/model/response/epc-recommendation";
 import {BoilerTypeMetadataResponse} from "../boiler-types-service/boiler-type-metadata-response";
-import {AllBoilerTypes} from "../boiler-types-service/boiler-type";
+import {BoilerType} from "../boiler-types-service/boiler-type";
 import {EpcApiService} from "../../shared/postcode-epc-service/epc-api-service/epc-api.service";
 import {BoilerPageMeasuresService} from "../measures-section/boiler-page-measures.service";
 import {BoilerMeasuresSectionComponent} from "../measures-section/boiler-measures-section.component";
 import {QuestionnaireService} from "../../questionnaire/questionnaire.service";
 import {GasAndOilBoiler} from "../gas-and-oil-boilers/gas-and-oil-boiler";
 import {GasAndOilBoilersService} from "../gas-and-oil-boilers/gas-and-oil-boilers.service";
+import values from "lodash-es/values";
+import {BoilerLinkButtonComponent} from "../boiler-link-button/boiler-link-button.component";
 
 describe('BoilerEpcReplaceComponent', () => {
     let component: BoilerEpcReplaceComponent;
@@ -56,7 +59,7 @@ describe('BoilerEpcReplaceComponent', () => {
     const boilerTypesResponse = require('assets/test/boiler-types-response.json');
     const boilerTypesServiceStub = {
         fetchBoilerTypes: () => Observable.of(boilerTypesResponse)
-            .map((response: BoilerTypeMetadataResponse[]) => new AllBoilerTypes(response))
+            .map((response: BoilerTypeMetadataResponse[]) => response.map(boiler => BoilerType.fromMetadata(boiler)))
     };
 
     const gasAndOilBoilersData = require('assets/boilers/gas-and-oil-boiler.json');
@@ -78,10 +81,12 @@ describe('BoilerEpcReplaceComponent', () => {
                 BoilerMeasuresSectionComponent,
                 RecommendationCardComponent,
                 SpinnerAndErrorContainerComponent,
+                BoilerLinkButtonComponent,
             ],
             imports: [
                 RouterTestingModule,
                 FormsModule,
+                InlineSVGModule,
             ],
             providers: [
                 {provide: EpcApiService, useValue: epcApiServiceStub},
@@ -129,8 +134,8 @@ describe('BoilerEpcReplaceComponent', () => {
 
     it('should store the boiler types returned from the API', () => {
         boilerTypesServiceStub.fetchBoilerTypes().toPromise().then(boilerTypes => {
-            expect(component.boilerTypes.length).toBe(Object.values(boilerTypes).length);
-            Object.values(boilerTypes).forEach(boiler => expect(component.boilerTypes).toContain(boiler));
+            expect(component.boilerTypes.length).toBe(values(boilerTypes).length);
+            values(boilerTypes).forEach(boiler => expect(component.boilerTypes).toContain(boiler));
         });
     });
 

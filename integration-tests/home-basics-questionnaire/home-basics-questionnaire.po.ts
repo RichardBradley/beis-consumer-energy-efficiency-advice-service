@@ -3,7 +3,7 @@ import {CommonPageHelpers} from "../common-page-helpers";
 import {QuestionnairePage} from "../questionnaire-page";
 
 export class HomeBasicsQuestionnairePage extends QuestionnairePage {
-    miniEpcEnabled: boolean;
+    private miniEpcEnabled: boolean;
 
     navigateTo() {
         return browser.get('/js/energy-efficiency/questionnaire/home-basics');
@@ -19,11 +19,13 @@ export class HomeBasicsQuestionnairePage extends QuestionnairePage {
     }
 
     private selectFirstAddress() {
-        element(by.css('app-postcode-epc-question .list-select .list-select-option:first-child')).click();
+        let e = element(by.css('app-postcode-epc-question .list-select .list-select-option:first-child'));
+        CommonPageHelpers.clickWhenClickable(e);
     }
 
     selectFirstHomeAge() {
-        element(by.css('app-home-age-question .home-age-option:first-child')).click();
+        let e = element(by.css('app-home-age-question .home-age-option:first-child'));
+        CommonPageHelpers.clickWhenClickable(e);
     }
 
     selectAddressIfApplicable() {
@@ -40,7 +42,7 @@ export class HomeBasicsQuestionnairePage extends QuestionnairePage {
         return browser.controlFlow().execute(() => {
             if (this.miniEpcEnabled) {
                 expect(this.getHeading()).toContain('Here\'s what we know so far...');
-                CommonPageHelpers.clickButton('Yes');
+                CommonPageHelpers.clickButton('get a few more details');
                 CommonPageHelpers.sleep(1000);
             }
         });

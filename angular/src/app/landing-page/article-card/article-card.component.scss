@@ -1,5 +1,5 @@
 @import "styles/mixins/font";
-@import "styles/var/colours";
+@import "styles/var/colors";
 
 :host {
   display: block;
@@ -13,7 +13,7 @@
   padding: 32px;
   box-sizing: border-box;
 
-  background-color: $light-grey;
+  background-color: $lighter-grey;
 
   .icon-container {
     margin-bottom: 32px;
@@ -36,6 +36,8 @@
   }
 
   .summary {
-    font-size: 18px;
+    font-size: 14px;
+    line-height: 18px;
+    font-family: $font-family-light;
   }
 }

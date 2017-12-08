@@ -10,6 +10,9 @@ import {ResponseData} from "../../shared/response-data/response-data";
 import {QuestionMetadata} from "../base-question/question-metadata";
 import {QuestionBaseComponent} from "../base-question/question-base-component";
 import groupBy from "lodash-es/groupBy";
+import {InlineSVGModule} from "ng-inline-svg";
+import {HttpClientTestingModule} from "@angular/common/http/testing";
+import includes from "lodash-es/includes";
 
 describe('ProgressIndicatorComponent', () => {
     let component: ProgressIndicatorComponent;
@@ -50,8 +53,8 @@ describe('ProgressIndicatorComponent', () => {
 
     class TestQuestionnaire extends Questionnaire {
         static readonly questions = [
-            new TestQuestion(TestQuestionComponent, 'question0', QuestionType.User),
-            new TestQuestion(TestQuestionComponent, 'question1', QuestionType.User),
+            new TestQuestion(TestQuestionComponent, 'question0', QuestionType.House),
+            new TestQuestion(TestQuestionComponent, 'question1', QuestionType.House),
             new TestQuestion(TestQuestionComponent, 'question2', QuestionType.House),
             new TestQuestion(TestQuestionComponent, 'question3', QuestionType.House),
             new TestQuestion(TestQuestionComponent, 'question4', QuestionType.House),
@@ -67,7 +70,7 @@ describe('ProgressIndicatorComponent', () => {
         }
 
         isAvailable(index) {
-            return availableQuestions !== undefined && availableQuestions.includes(index);
+            return availableQuestions !== undefined && includes(availableQuestions, index);
         }
 
         isApplicable(index) {
@@ -78,6 +81,8 @@ describe('ProgressIndicatorComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [ProgressIndicatorComponent],
+            imports: [InlineSVGModule, HttpClientTestingModule],
+            providers: [ResponseData]
         })
             .compileComponents();
     }));
@@ -128,10 +133,11 @@ describe('ProgressIndicatorComponent', () => {
         const expectedNumberOfQuestionnaireSections = Object.keys(groupBy(TestQuestionnaire.questions, q => q.questionType)).length;
 
         // when
-        const allQuestionnaireSections = fixture.debugElement.queryAll(By.css('.questionnaire-section'));
+        const questionnaireSectionsExcludingInformationSection =
+            fixture.debugElement.queryAll(By.css('.questionnaire-section:not(.information-section)'));
 
         // then
-        expect(allQuestionnaireSections.length).toEqual(expectedNumberOfQuestionnaireSections);
+        expect(questionnaireSectionsExcludingInformationSection.length).toEqual(expectedNumberOfQuestionnaireSections);
     });
 
     it('should display the correct number of questions in each section', () => {
@@ -143,9 +149,7 @@ describe('ProgressIndicatorComponent', () => {
 
         // when
         const heatingSection = allQuestionnaireSections.find(section => {
-            const sectionIcon = section.query(By.css('.question-type-icon'));
-            const heatingIconClassName = QuestionTypeUtil.getIconClassName(QuestionType.Heating);
-            return sectionIcon.nativeElement.classList.contains(heatingIconClassName);
+            return !!section.query(By.css('.question-type-icon .thermostat'));
         });
 
         // then

@@ -3,7 +3,6 @@ import {RouterModule, Routes} from "@angular/router";
 import {PageComponent} from "./page/page.component";
 import {HomePageComponent} from "./home-page/home-page.component";
 import {HomeImprovementsComponent} from "./landing-page/home-improvements/home-improvements.component";
-import {CarbonFootprintComponent} from "./landing-page/carbon-footprint/carbon-footprint.component";
 import {ReduceBillsComponent} from "./landing-page/reduce-bills/reduce-bills.component";
 import {WarmerHomeComponent} from "./landing-page/warmer-home/warmer-home.component";
 import {BoilerLandingPageComponent} from "./boiler/landing-page/boiler-landing-page.component";
@@ -19,11 +18,16 @@ import {BoilerResultsPageComponent} from "./boiler/results-page/boiler-results-p
 import {BoilerResultsPageRouteGuard} from "./boiler/results-page/boiler-results-page.guard";
 import {BoilerReplacementPageComponent} from "./boiler/replacement-page/boiler-replacement-page.component";
 import {BoilerMakeModelReplaceComponent} from "./boiler/make-model-replace/boiler-make-model-replace.component";
+import {BoilerAdvicePageComponent} from "./boiler/advice-page/boiler-advice-page.component";
+import {YourPlanPageComponent} from "./energy-efficiency/your-plan-page/your-plan-page.component";
+import {YourPlanPageGuard} from "./energy-efficiency/your-plan-page/your-plan-page.guard";
+import {GreenerHomeComponent} from "./landing-page/greener-home/greener-home.component";
 
 const routes: Routes = [
     {
         path: '',
-        component: HomePageComponent
+        component: HomePageComponent,
+        pathMatch: 'full'
     },
     {
         path: 'js/energy-efficiency/questionnaire/:name',
@@ -36,16 +40,23 @@ const routes: Routes = [
         canActivate: [EnergyEfficiencyResultsRouteGuard]
     },
     {
+        path: 'js/energy-efficiency/your-plan',
+        component: YourPlanPageComponent,
+        canActivate: [YourPlanPageGuard]
+    },
+    {
         path: 'js/grants',
-        component: GrantsLandingPageComponent
+        component: GrantsLandingPageComponent,
+        pathMatch: 'full'
     },
     {
         path: 'js/grants/questionnaire',
-        component: GrantsQuestionnaireComponent
+        component: GrantsQuestionnaireComponent,
+        pathMatch: 'full'
     },
     {
-        path: 'js/carbon-footprint',
-        component: CarbonFootprintComponent
+        path: 'js/greener-home',
+        component: GreenerHomeComponent
     },
     {
         path: 'js/home-improvements',
@@ -61,7 +72,12 @@ const routes: Routes = [
     },
     {
         path: 'js/boiler',
-        component: BoilerLandingPageComponent
+        component: BoilerLandingPageComponent,
+        pathMatch: 'full'
+    },
+    {
+        path: 'js/boiler/advice/:slug',
+        component: BoilerAdvicePageComponent
     },
     {
         path: 'js/boiler/replace',
@@ -86,11 +102,13 @@ const routes: Routes = [
     },
     {
         path: ':slug',
-        component: PageComponent
+        component: PageComponent,
+        pathMatch: 'full'
     },
     {
         path: ':section/:slug',
-        component: PageComponent
+        component: PageComponent,
+        pathMatch: 'full'
     },
     {
         path: '**',

@@ -1,21 +1,28 @@
 @import 'styles/mixins/buttons';
+@import "styles/var/colors";
 
 .heating-cost-question {
-
-  @include with-no-spin-buttons;
-  input[type="number"] {
-    width: 200px;
-  }
-
   .question-content {
     display: flex;
 
+    .questionnaire-form {
+      margin-right: 30px;
+      padding-right: 30px;
+      border-right: 1px solid $separator-grey;
+    }
+
     .do-not-know-button {
-      @include capsule-button(200px, 50px);
+      @include capsule-button();
       font-size: 20px;
       background-color: white;
+      color: $dark-grey;
       border: none;
-      margin-left: 50px;
+      outline: none;
+      padding: 12px 36px;
+
+      &:hover, &:focus {
+        background-color: $lighter-medium-grey;
+      }
     }
   }
 }

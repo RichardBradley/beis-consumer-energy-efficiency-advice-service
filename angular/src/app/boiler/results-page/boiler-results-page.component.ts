@@ -1,7 +1,7 @@
 import {Component, OnInit, AfterViewInit, AfterViewChecked} from "@angular/core";
 import {Observable} from "rxjs/Observable";
 import {BoilerTypesService} from "../boiler-types-service/boiler-types.service";
-import {AllBoilerTypes, BoilerType} from "../boiler-types-service/boiler-type";
+import {BoilerType} from "../boiler-types-service/boiler-type";
 import {EnergySavingRecommendation} from "../../shared/recommendation-card/energy-saving-recommendation";
 import {BoilerPageMeasuresService} from "../measures-section/boiler-page-measures.service";
 import {ResponseData} from "../../shared/response-data/response-data";
@@ -10,6 +10,7 @@ import {WaterTankSpace} from "../../questionnaire/questions/water-tank-question/
 import {GardenAccessibility} from "../../questionnaire/questions/garden-question/garden-accessibility";
 import {GlazingType, RoofType, WallType} from "../../questionnaire/questions/construction-question/construction-types";
 import {RoofSpace} from "../../questionnaire/questions/roof-space-question/roof-space";
+import sortBy from "lodash-es/sortBy";
 
 @Component({
     selector: 'app-boiler-results-page',
@@ -35,7 +36,10 @@ export class BoilerResultsPageComponent implements OnInit, AfterViewInit, AfterV
         )
             .subscribe(
                 ([boilerTypes, measures]) => {
-                    this.handleBoilerTypesResponse(boilerTypes);
+                    this.applicableBoilerTypes = sortBy(
+                        boilerTypes.filter(boilerType => this.boilerIsApplicable(boilerType)),
+                        boilerType => boilerType.averageInstallationCost,
+                    );
                     this.measures = measures;
                 },
                 () => this.handleError(),
@@ -51,19 +55,13 @@ export class BoilerResultsPageComponent implements OnInit, AfterViewInit, AfterV
         this.setEqualHeightsOnOptionCardSections();
     }
 
-    private handleBoilerTypesResponse(boilerTypes: AllBoilerTypes) {
-        this.applicableBoilerTypes = Object.keys(boilerTypes)
-            .filter(boilerType => this.boilerIsApplicable(boilerType))
-            .map(boilerType => boilerTypes[boilerType]);
-    }
-
     private handleError() {
         this.isError = true;
         this.isLoading = false;
     }
 
-    private boilerIsApplicable(boilerSlug: string): boolean {
-        switch (boilerSlug) {
+    private boilerIsApplicable(boiler: BoilerType): boolean {
+        switch (boiler.slug) {
             case 'combi-boiler':
                 return true;
             case 'system-boiler':

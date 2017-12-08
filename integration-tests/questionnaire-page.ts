@@ -1,4 +1,5 @@
 import {by, element} from "protractor";
+import {CommonPageHelpers} from "./common-page-helpers";
 
 export class QuestionnairePage {
     hasError() {
@@ -10,13 +11,10 @@ export class QuestionnairePage {
     }
 
     clickOption(text: string) {
-        let option = element(by.cssContainingText('.multiple-choice-option', text));
+        const option = element(by.cssContainingText('.multiple-choice-option', text));
         option.getTagName().then((tagName: string) => {
-            if (tagName === 'button') {
-                option.click();
-            } else {
-                option.element(by.tagName('button')).click();
-            }
+            const clickableOption = tagName === 'button' ? option : option.element(by.tagName('button'));
+            CommonPageHelpers.clickWhenClickable(clickableOption);
         });
     }
 

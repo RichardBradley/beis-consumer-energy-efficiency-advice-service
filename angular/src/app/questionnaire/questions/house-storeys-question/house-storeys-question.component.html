@@ -1,0 +1,8 @@
+<div class="house-storeys-question question-component">
+    <form class="questionnaire-form" (submit)="handleFormSubmit()">
+        <app-number-question itemsName="storeys"
+                             [(quantity)]="response"
+                             [minQuantity]="1"
+                             [maxQuantity]="10"></app-number-question>
+    </form>
+</div>

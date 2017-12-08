@@ -7,6 +7,7 @@ import {FuelType} from "../fuel-type-question/fuel-type";
 import {ElectricityTariff} from "../electricity-tariff-question/electricity-tariff";
 import {EpcResponse} from "../../../shared/postcode-epc-service/model/response/epc-response";
 import {EpcRating} from "../../../shared/postcode-epc-service/model/epc-rating";
+import {DataCardComponent} from "../../../shared/data-card/data-card.component";
 
 describe('ConfirmEpcQuestionComponent', () => {
     let component: ConfirmEpcQuestionComponent;
@@ -21,7 +22,7 @@ describe('ConfirmEpcQuestionComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [ConfirmEpcQuestionComponent],
+            declarations: [ConfirmEpcQuestionComponent, DataCardComponent],
             providers: [ResponseData],
         })
             .compileComponents();
@@ -85,7 +86,7 @@ describe('ConfirmEpcQuestionComponent', () => {
 
         // then
         fixture.whenStable().then(() => {
-            expect(component.homeType).toEqual(HomeType.MidFloorFlat);
+            expect(component.homeType).toEqual(HomeType.FlatDuplexOrMaisonette);
         });
     }));
 
@@ -151,7 +152,7 @@ describe('ConfirmEpcQuestionComponent', () => {
         it('should autopopulate future questions', async(() => {
             // given
             component.fuelType = FuelType.LPGGas;
-            component.homeType = HomeType.ParkHome;
+            component.homeType = HomeType.ParkHomeOrMobileHome;
             component.electricityTariff = ElectricityTariff.OffPeak;
 
             // when
@@ -160,7 +161,7 @@ describe('ConfirmEpcQuestionComponent', () => {
             // then
             fixture.whenStable().then(() => {
                 expect(component.response.fuelType).toBe(FuelType.LPGGas);
-                expect(component.response.homeType).toBe(HomeType.ParkHome);
+                expect(component.response.homeType).toBe(HomeType.ParkHomeOrMobileHome);
                 expect(component.response.electricityTariff).toBe(ElectricityTariff.OffPeak);
             });
         }));

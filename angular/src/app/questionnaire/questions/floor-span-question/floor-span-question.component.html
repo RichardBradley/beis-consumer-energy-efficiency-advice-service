@@ -1,0 +1,12 @@
+<div class="question-component floor-span-question">
+    <div class="multiple-choice-options floor-level-options">
+        <button *ngFor="let option of floorLevelOptions"
+                class="multiple-choice-option floor-level-option"
+                id="floor-span-checkbox-{{FloorLevel[option.value]}}"
+                [name]="option.name"
+                [class.selected]="isFloorLevelOptionSelected(option)"
+                (click)="toggleFloorLevelOption(option)">
+            {{option.displayName}}
+        </button>
+    </div>
+</div>

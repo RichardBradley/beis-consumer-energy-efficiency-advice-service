@@ -1,4 +1,4 @@
-import {Component} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {QuestionBaseComponent, slideInOutAnimation} from "../../base-question/question-base-component";
 import toString from "lodash-es/toString";
 
@@ -8,30 +8,25 @@ import toString from "lodash-es/toString";
     styleUrls: ['./heating-cost-question.component.scss'],
     animations: [slideInOutAnimation],
 })
-export class HeatingCostQuestionComponent extends QuestionBaseComponent {
-    isInvalid: boolean;
-    heatingCostDisplay: number;
-
+export class HeatingCostQuestionComponent extends QuestionBaseComponent implements OnInit {
     get responseForAnalytics(): string {
-        return toString(this.responseData.heatingCost);
+        return toString(this.response);
     }
 
     ngOnInit() {
-        this.heatingCostDisplay = this.responseData.heatingCost;
+        this.response = this.response || 0;
     }
 
-    updateResponseData(value) {
-        if (value < 0) {
-            this.isInvalid = true;
-            this.responseData.heatingCost = undefined;
-        } else {
-            this.isInvalid = false;
-            this.responseData.heatingCost = value;
-        }
+    get response(): number {
+        return this.responseData.heatingCost;
+    }
+
+    set response(val: number) {
+        this.responseData.heatingCost = val;
     }
 
     handleFormSubmit() {
-        if (this.responseData.heatingCost !== undefined) {
+        if (this.response) {
             this.complete.emit();
         }
     }

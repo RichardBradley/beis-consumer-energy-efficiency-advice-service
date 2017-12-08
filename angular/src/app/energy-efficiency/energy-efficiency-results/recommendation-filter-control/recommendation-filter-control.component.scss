@@ -1,23 +1,21 @@
 @import "../recommendation-tags/_recommendation-tags.scss";
-@import "styles/var/colours";
+@import "styles/var/colors";
 
 .recommendation-filter-control {
   display: flex;
 
   .tags {
     .tag {
-      opacity: 0.4;
       cursor: pointer;
       outline: none;
       border: none;
 
-      &:focus, &:hover {
-        box-shadow: 2px 2px 4px black;
+      &.deselected:not(:hover) {
+        background-color: white;
+        color: $light-medium-grey;
       }
 
-      &.selected {
-        opacity: 1;
-      }
+      // TODO: Add a focus style for keyboard accessibility
 
       &.clear-filters {
         background-color: $dark-medium-grey;

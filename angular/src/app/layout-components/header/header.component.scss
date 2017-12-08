@@ -1,5 +1,5 @@
 @import "styles/page";
-@import "styles/var/colours";
+@import "styles/var/colors";
 
 $search-container-height: 24px;
 $search-container-vertical-padding: 10px;
@@ -18,6 +18,11 @@ $animation-duration-vertical: 0.5s;
       display: flex;
       margin-right: 20px;
       align-items: center;
+
+      .ehc-logo {
+        height: 62px;
+        margin-left: -80px;
+      }
 
       .vertical-line {
         border-left: 1px solid black;
@@ -48,6 +53,7 @@ $animation-duration-vertical: 0.5s;
       .search-form {
         display: flex;
         flex-grow: 1;
+        width: 100%;
 
         .search-input {
           background: none;
@@ -55,17 +61,20 @@ $animation-duration-vertical: 0.5s;
           border: none;
           padding: 0;
           font-size: 16px;
-          width: 100%;
+          flex-grow: 1;
+          min-width: 1px;
         }
 
-        .icon-search {
+        .icon {
           height: 20px;
           width: 20px;
+          stroke: $primary-blue;
           cursor: pointer;
           background: none;
           border: none;
           outline: none;
           padding: 0;
+          flex-shrink: 0;
 
           &:focus {
             height: 24px;
@@ -87,7 +96,7 @@ $animation-duration-vertical: 0.5s;
         display: flex;
         align-items: stretch;
         overflow: hidden;
-        z-index: 10;
+        z-index: 1;
 
         &.expanded {
           max-height: 300px;

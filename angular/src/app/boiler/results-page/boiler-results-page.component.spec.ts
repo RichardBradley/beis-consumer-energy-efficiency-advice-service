@@ -2,18 +2,20 @@ import {async, ComponentFixture, TestBed} from "@angular/core/testing";
 import {By} from "@angular/platform-browser";
 import {RouterTestingModule} from "@angular/router/testing";
 import {Observable} from "rxjs/Observable";
+import {InlineSVGModule} from "ng-inline-svg";
 
 import {BoilerResultsPageComponent} from "./boiler-results-page.component";
 import {SpinnerAndErrorContainerComponent} from "../../shared/spinner-and-error-container/spinner-and-error-container.component";
 import {BoilerMeasuresSectionComponent} from "../measures-section/boiler-measures-section.component";
-import {BoilerOptionCardComponent} from "./boiler-option-card/boiler-option-card.component";
 import {RecommendationCardComponent} from "../../shared/recommendation-card/recommendation-card.component";
-import {AllBoilerTypes} from "../boiler-types-service/boiler-type";
 import {BoilerTypeMetadataResponse} from "../boiler-types-service/boiler-type-metadata-response";
 import {BoilerPageMeasuresService} from "../measures-section/boiler-page-measures.service";
 import {BoilerTypesService} from "../boiler-types-service/boiler-types.service";
 import {ResponseData} from "../../shared/response-data/response-data";
 import {QuestionnaireService} from "../../questionnaire/questionnaire.service";
+import {BoilerType} from "../boiler-types-service/boiler-type";
+import {BoilerLinkButtonComponent} from "../boiler-link-button/boiler-link-button.component";
+import {BoilerReplacementCardComponent} from "../boiler-replacement-card/boiler-replacement-card.component";
 
 describe('BoilerResultsPageComponent', () => {
     let component: BoilerResultsPageComponent;
@@ -27,7 +29,7 @@ describe('BoilerResultsPageComponent', () => {
     const boilerTypesResponse = require('assets/test/boiler-types-response.json');
     const boilerTypesServiceStub = {
         fetchBoilerTypes: () => Observable.of(boilerTypesResponse)
-            .map((response: BoilerTypeMetadataResponse[]) => new AllBoilerTypes(response))
+            .map((response: BoilerTypeMetadataResponse[]) => response.map(boiler => BoilerType.fromMetadata(boiler)))
     };
 
     const questionnaireServiceStub = {
@@ -38,13 +40,15 @@ describe('BoilerResultsPageComponent', () => {
         TestBed.configureTestingModule({
             declarations: [
                 BoilerResultsPageComponent,
-                BoilerOptionCardComponent,
                 BoilerMeasuresSectionComponent,
+                BoilerReplacementCardComponent,
                 RecommendationCardComponent,
                 SpinnerAndErrorContainerComponent,
+                BoilerLinkButtonComponent,
             ],
             imports: [
                 RouterTestingModule,
+                InlineSVGModule,
             ],
             providers: [
                 ResponseData,
@@ -76,20 +80,20 @@ describe('BoilerResultsPageComponent', () => {
         expect(TestBed.get(BoilerTypesService).fetchBoilerTypes).toHaveBeenCalledWith();
     });
 
-    it('should show a boiler option card for each applicable boiler', () => {
+    it('should show a boiler replacement card for each applicable boiler', () => {
         // given
-        component.applicableBoilerTypes = Object.values(new AllBoilerTypes(boilerTypesResponse));
+        component.applicableBoilerTypes = boilerTypesResponse.map(boiler => BoilerType.fromMetadata(boiler));
 
         // when
         fixture.detectChanges();
 
         // then
-        const optionCards = fixture.debugElement.queryAll(By.directive(BoilerOptionCardComponent));
-        const actualBoilers = optionCards.map(el => el.componentInstance.boiler);
+        const optionCards = fixture.debugElement.queryAll(By.directive(BoilerReplacementCardComponent));
+        const actualBoilers = optionCards.map(el => el.componentInstance.boilerType);
 
         boilerTypesServiceStub.fetchBoilerTypes().toPromise().then(expectedBoilers => {
-            expect(actualBoilers.length).toBe(Object.values(expectedBoilers).length);
-            Object.values(expectedBoilers).forEach(boiler => expect(actualBoilers).toContain(boiler));
+            expect(actualBoilers.length).toBe(expectedBoilers.length);
+            expectedBoilers.forEach(boiler => expect(actualBoilers).toContain(boiler));
         });
     });
 

@@ -1,15 +1,3 @@
-.icon-tree::before {
-  content: url('/assets/images/icons/tree.svg');
-}
-
-.icon-home-storeys::before {
-  content: url('/assets/images/icons/home-storeys.svg');
-}
-
-.icon-bed::before {
-  content: url('/assets/images/icons/bedrooms.svg');
-}
-
 .icon-house::before {
   content: url('assets/images/question-types/house.svg');
 }
@@ -18,20 +6,8 @@
   content: url('assets/images/question-types/person.svg');
 }
 
-.icon-person-large::before {
-  content: url('assets/images/question-types/person-large.svg');
-}
-
 .icon-thermostat::before {
   content: url('assets/images/question-types/thermostat.svg');
-}
-
-.icon-person-showering::before {
-  content: url('assets/images/question-types/behaviour.svg');
-}
-
-.icon-behaviour::before {
-  content: url('assets/images/topics/behaviour.svg');
 }
 
 .icon-doors::before {
@@ -82,16 +58,8 @@
   content: url('assets/images/controls/search-white.svg');
 }
 
-.icon-phone::before {
-  content: url('assets/images/controls/phone.svg');
-}
-
 .icon-house-layers::before {
   content: url('assets/images/icons/house-layers.svg');
-}
-
-.icon-timer::before {
-  content: url('assets/images/icons/timer.svg');
 }
 
 .icon-boiler {
@@ -144,10 +112,14 @@
   content: url('assets/images/icons/camera.svg');
 }
 
-.icon-tick::before {
-  content: url('assets/images/icons/tick.svg');
+.icon-tick-white::before {
+  content: url('assets/images/icons/tick-white.svg');
 }
 
-.icon-cross::before {
-  content: url('assets/images/icons/cross.svg');
+.icon-lightbulb::before {
+  content: url('assets/images/icons/lightbulb.svg');
+}
+
+.icon-switch::before {
+  content: url('assets/images/icons/switch-blue.svg');
 }

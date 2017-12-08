@@ -1,10 +1,12 @@
 import {Component, Input, OnInit} from "@angular/core";
 import {Router} from "@angular/router";
 import {ResponseData} from "../shared/response-data/response-data";
-import {UserJourneyType} from "../shared/response-data/user-journey-type";
-import {PostcodeEpcService} from "../shared/postcode-epc-service/postcode-epc.service";
+import {getJourneyDescription, UserJourneyType} from "../shared/response-data/user-journey-type";
 import {QuestionContentService} from "../shared/question-content/question-content.service";
-import {AllQuestionsContent} from "../shared/question-content/all-questions-content";
+import {WordpressPagesService} from "../shared/wordpress-pages-service/wordpress-pages.service";
+import {WordpressPage} from "../shared/wordpress-pages-service/wordpress-page";
+import {Observable} from "rxjs/Observable";
+import {StaticMeasure} from "./static-measure-card/static-measure";
 
 @Component({
     selector: 'app-landing-page',
@@ -14,16 +16,35 @@ import {AllQuestionsContent} from "../shared/question-content/all-questions-cont
 export class LandingPageComponent implements OnInit {
     constructor(private router: Router,
                 private responseData: ResponseData,
-                private questionContentService: QuestionContentService) {
+                private questionContentService: QuestionContentService,
+                private pageService: WordpressPagesService) {
     }
 
-    @Input() heading: string;
     @Input() userJourneyType: UserJourneyType;
-    postcodeInput: string;
-    validationError: boolean = false;
 
     questionContentError: boolean = false;
     postcodeQuestionReason: string;
+    heading: string;
+
+    staticMeasures: StaticMeasure[] = [
+        {
+            iconClassName: 'icon-lightbulb',
+            basicInfoValue: '15%',
+            basicInfoHeadline: 'of your electricity bill is accounted for by lighting',
+            measureHeadline: 'Energy efficient lighting',
+            measureSummary: 'You can cut your lighting bill and energy use by changing which bulbs you use and how you use them',
+            averageSavings: 75
+        },
+        {
+            iconClassName: 'icon-switch',
+            basicInfoValue: '40%',
+            basicInfoHeadline: 'of people could save money by switching energy suppliers',
+            measureHeadline: 'Switching energy supplier',
+            measureSummary: 'Comparing energy tariffs and deals regularly can help you make sure you’re getting the best gas or electricity tariff for your usage and the best service offer.',
+            averageSavings: 30
+        }
+    ];
+    latestNews: WordpressPage[];
 
     ngOnInit() {
         this.questionContentService.fetchQuestionsContent()
@@ -32,14 +53,14 @@ export class LandingPageComponent implements OnInit {
                     console.log(err);
                     this.questionContentError = true;
                 });
+        this.pageService.getLatestPages()
+            .subscribe(pages => this.latestNews = pages);
+
+        this.heading = getJourneyDescription(this.userJourneyType);
     }
 
-    onPostcodeSubmit() {
-        this.postcodeInput = this.postcodeInput.trim();
-        if (!(this.validationError = !PostcodeEpcService.isValidPostcode(this.postcodeInput))) {
-            this.responseData.postcode = this.postcodeInput;
-            this.responseData.userJourneyType = this.userJourneyType;
-            this.router.navigate(['/js/energy-efficiency/questionnaire/home-basics']);
-        }
+    onAddressSelected() {
+        this.responseData.userJourneyType = this.userJourneyType;
+        this.router.navigate(['/js/energy-efficiency/questionnaire/home-basics']);
     }
 }

@@ -22,6 +22,9 @@ describe('Home basics questionnaire', () => {
         page.selectAddressIfApplicable();
         CommonPageHelpers.sleep(1000);
 
+        // Mini-EPC
+        page.confirmEpcIfApplicable();
+
         // Tenure type
         // Not testing the page heading because this is likely to be changed completely in wordpress
         expect(element(by.css('owner-occupancy-option'))).toBeTruthy();
@@ -30,36 +33,38 @@ describe('Home basics questionnaire', () => {
         page.clickOption('I own my own home');
         CommonPageHelpers.sleep(1000);
 
-        // Mini-EPC
-        page.confirmEpcIfApplicable();
-
         // Home type
         expect(page.getHeading()).toContain('type of home');
-        page.clickOption('ground floor flat');
+        page.clickOption('flat');
+        CommonPageHelpers.sleep(1000);
+
+        // Storey count
+        expect(page.getHeading()).toContain('How many floors');
+        page.goForwards();
+        CommonPageHelpers.sleep(1000);
+
+        // Which floor
+        expect(page.getHeading()).toContain('Which floor is your property');
+        page.clickOption('basement');
         CommonPageHelpers.sleep(1000);
 
         // Flat position
-        expect(page.getHeading()).toContain('its position');
+        expect(page.getHeading()).toContain('flat position');
         page.clickOption('1 Side Exposed');
         CommonPageHelpers.sleep(1000);
 
         // Home age
         expect(page.getHeading()).toContain('When was your home built');
-        page.selectFirstHomeAge();
         page.goForwards();
         CommonPageHelpers.sleep(1000);
 
-        // Storey count
-        expect(page.getHeading()).toContain('How many storeys');
-        page.goForwards();
-
         // Bedrooms count
-        expect(page.getHeading()).toContain('How many bedrooms ');
+        expect(page.getHeading()).toContain('How many bedrooms');
         page.goForwards();
         CommonPageHelpers.sleep(1000);
 
         // The start of optional property questions
-        expect(page.getHeading()).toContain('The next set of property questions are optional');
+        expect(page.getHeading()).toContain('answer more questions about your property');
         CommonPageHelpers.clickButton('Yes');
         CommonPageHelpers.sleep(1000);
 
@@ -85,5 +90,15 @@ describe('Home basics questionnaire', () => {
 
         // Tariff
         expect(page.getHeading()).toContain('electricity tariff');
+        page.clickOption('Standard');
+        CommonPageHelpers.sleep(1000);
+
+        // Heating cost
+        expect(page.getHeading()).toContain('pay a month');
+        page.goForwards();
+        CommonPageHelpers.sleep(1000);
+
+        // Length of heating on
+        expect(page.getHeading()).toContain('How many hours');
     })
 });

@@ -1,14 +1,18 @@
-@import "styles/var/_colours";
+@import "styles/var/colors";
 @import "styles/mixins/_font";
 
 .navigation-bar {
   background-color: $dark-grey;
-  height: 36px;
+  height: 44px;
 
   .page-row-content {
 
+    display: flex;
+    align-items: center;
+
     .menu-item {
-      padding: 10px 15px;
+      @include navbar-item;
+      padding: 12px 0 15px 0;
       cursor: pointer;
       border: none;
       background: none;
@@ -16,8 +20,11 @@
       color: white;
       text-decoration: none;
 
+      &:not(:last-child) {
+        margin-right: 34px;
+      }
+
       &:focus {
-        @include navbar-item;
         text-decoration: underline;
       }
     }

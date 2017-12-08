@@ -4,7 +4,7 @@ import {
     getTagClassName,
     getTagDescription
 } from "../recommendation-tags/energy-efficiency-recommendation-tag";
-import {keys} from "lodash-es";
+import keys from "lodash-es/keys";
 
 @Component({
     selector: 'app-recommendation-filter-control',
@@ -32,12 +32,8 @@ export class RecommendationFilterControlComponent implements OnInit {
             });
     }
 
-    shouldDisplayAsSelected(tag: EnergyEfficiencyRecommendationTag): boolean {
-        if (!this.isAnyTagSelected()) {
-            // If no tags are selected, we display all as selected for cleaner UI
-            return true;
-        }
-        return !!(this.selectedTags & tag);
+    shouldDisplayAsDeselected(tag: EnergyEfficiencyRecommendationTag): boolean {
+        return !(this.selectedTags & tag);
     }
 
     isAnyTagSelected(): boolean {

@@ -12,13 +12,21 @@
 @import "~nouislider/distribute/nouislider.min.css";
 
 html, body {
-  width: 100vw;
   overflow-y: visible;
   font-family: $font-family;
+  color: $dark-grey;
   margin: 0;
 }
 
 html {
   height: 100vh;
   overflow-x: hidden;
+}
+
+button, input, select {
+  font-family: $font-family;
+}
+
+p {
+  font-family: $font-family-light
 }
